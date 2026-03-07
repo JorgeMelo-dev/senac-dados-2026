@@ -36,6 +36,10 @@ ordem_decrescente = df_menor_q1_furto_celular.sort_values(by='furto_celular', as
 print(ordem_decrescente)    
 
 
-#df_apreensao = df.groupby('cisp')['apreensao_drogas'].sum().reset_index()
-#array_apreensao = np.array(df_apreensao['apreensao_drogas'])
-#q1_apreensao = np.percentile(np.array(df_apreensao['apreensao_drogas']), 25)    
+df_capital_2020 = df.loc[(df['ano'] == 2020) & (df['regiao'] == 'Capital')]
+df_apreensao = df_capital_2020.groupby('cisp')['aaapai'].sum().reset_index()
+df_apreensao = df_apreensao.sort_values(by='aaapai', ascending=False)
+
+array_apreensao = np.array(df_apreensao['aaapai'])
+q1_apreensao = np.percentile(array_apreensao, 25)
+df_menor_q1_apreensao = df_apreensao.loc[df_apreensao['aaapai'] < q1_apreensao]
