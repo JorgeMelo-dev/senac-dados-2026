@@ -147,6 +147,7 @@ plt.show()
 
 '''
 
+'''
 
 import pandas as pd
 import numpy as np
@@ -235,4 +236,43 @@ axs[1, 1].text(0.1, 0.1, f'Limite Inferior é {limite_inferior}', fontsize=10)
 plt.tight_layout()
 
 # Exibe todos os gráficos juntos
+plt.show()
+
+'''
+
+
+'''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+dados = 'https://www.ispdados.rj.gov.br/Arquivos/BaseDPEvolucaoMensalCisp.csv'
+df = pd.read_csv(dados, sep=';', encoding='latin1')
+
+df_veiculos = df.groupby('mes_ano')[['furto_veiculos', 'roubo_veiculo', 'recuperacao_veiculos']].sum().reset_index()
+#print(df_veiculos)
+
+plt.figure(figsize=(15,8))
+plt.scatter(df_veiculos['recuperacao_veiculos'], df_veiculos['roubo_veiculo'])
+plt.xlabel('Recuperação Veículos')
+plt.ylabel('Roubo Veículos')
+plt.title('Disperssão de Roubo e Recuperação de Veículos')
+plt.show()
+
+'''
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+dados = 'https://www.ispdados.rj.gov.br/Arquivos/BaseDPEvolucaoMensalCisp.csv'
+df = pd.read_csv(dados, sep=';', encoding='latin1')
+
+df_veiculos = df.groupby('mes_ano')[['furto_veiculos', 'roubo_veiculo', 'recuperacao_veiculos']].sum().reset_index()
+
+plt.figure(figsize=(15,8))
+plt.scatter(df_veiculos['recuperacao_veiculos'], df_veiculos['furto_veiculos'])
+plt.xlabel('Recuperação Veículos')
+plt.ylabel('Furto Veículos')
+plt.title('Disperssão de Furto e Recuperação de Veículos')
 plt.show()
